@@ -5,8 +5,6 @@ export const Message = async (req, res) => {
   try {
     const { text } = req.body;
 
-    console.log("User Input:", text);
-
     if (!text || !text.trim()) {
       return res.status(400).json({ error: "Text is required" });
     }
@@ -27,7 +25,7 @@ export const Message = async (req, res) => {
 
     // ---------------- Bot Responses (NO ? marks) ----------------
     const botResponses = {
-      "hello": "Hi there! How can I assist you today?",
+      hello: "Hi there! How can I assist you today?",
 
       "what is oop":
         "OOP is Object Oriented Programming. It is a programming paradigm that revolves around objects which contain data and methods.",
@@ -83,8 +81,7 @@ export const Message = async (req, res) => {
       "what is udp":
         "UDP is a connectionless protocol that is faster but less reliable.",
 
-      "what is dns":
-        "DNS converts domain names into IP addresses."
+      "what is dns": "DNS converts domain names into IP addresses.",
     };
 
     // ---------------- Response Logic ----------------
@@ -103,7 +100,6 @@ export const Message = async (req, res) => {
       UserMessage: user.text,
       BotMessage: bot.text,
     });
-
   } catch (error) {
     console.error("Chatbot Error:", error);
     res.status(500).json({ error: "Internal server error" });
