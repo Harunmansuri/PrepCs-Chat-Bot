@@ -1,9 +1,10 @@
 import React from 'react'
+import Bot from './components/Bot'
 
 const App = () => {
   return (
     <div>
-      <h1 className='text-3xl'>PrepCS</h1>
+   <Bot></Bot>
     </div>
   )
 }
