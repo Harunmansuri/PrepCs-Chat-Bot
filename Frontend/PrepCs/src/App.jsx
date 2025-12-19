@@ -1,12 +1,17 @@
-import React from 'react'
-import Bot from './components/Bot'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from "./components/LandingPage";
+import Bot from "./components/Bot";
 
 const App = () => {
   return (
-    <div>
-   <Bot></Bot>
-    </div>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/chat" element={<Bot />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;

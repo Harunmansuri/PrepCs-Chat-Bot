@@ -1,17 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 import chatbotRoutes from "./routes/chatbot.route.js";
 
-dotenv.config();
 const app = express();
-
-// -------------------- Config --------------------
-const PORT = process.env.PORT || 4002;
-
+dotenv.config();
+const PORT = process.env.PORT || 5000;
 // -------------------- Middleware --------------------
 app.use(express.json()); // read JSON body
 app.use(express.urlencoded({ extended: true })); // read form data
+// -------------------- Config --------------------
+app.use(cors());
 
 // -------------------- Database --------------------
 

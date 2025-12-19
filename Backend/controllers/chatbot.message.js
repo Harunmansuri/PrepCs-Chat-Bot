@@ -18,76 +18,58 @@ export const Message = async (req, res) => {
     // ---------------- Normalize Input ----------------
     const normalizedText = text
       .toLowerCase()
-      .replace(/[?.!,]/g, "") // 🔥 remove punctuation
+      .replace(/[?.!,]/g, "")
       .trim();
 
-    console.log("Normalized:", normalizedText);
-
-    // ---------------- Bot Responses (NO ? marks) ----------------
+    // ---------------- Bot Responses ----------------
     const botResponses = {
-      hello: "Hi there! How can I assist you today?",
+      hello: "Hi! How can I help you?",
+      "can we become friend": "Yes 😊",
+      "how are you": "I'm doing great! How about you?",
+      "what is your name": "I’m BotSpoof, your virtual assistant.",
+      "who made you": "I was created by developers to help you.",
+      "tell me a joke":
+        "Why don’t skeletons fight each other? They don’t have the guts!",
+      "what is the time": "I can’t see a clock, but your device can!",
+      bye: "Goodbye! Have a great day 👋",
+      "thank you": "You’re welcome!",
+      "i love you": "That’s sweet ❤️",
+      "where are you from": "I live in the cloud ☁️",
+      "what can you do":
+        "I can chat, answer questions, and help you learn.",
+
+      "what is python":
+        "Python is a high-level programming language known for simplicity.",
+
+      "what is java":
+        "Java is a platform-independent object-oriented language.",
+
+      "what is recursion":
+        "Recursion is when a function calls itself until a base condition.",
+
+      "who is prime minister of india":
+        "Narendra Modi is the Prime Minister of India.",
+
+      "what is g20":
+        "G20 is a group of 20 major economies.",
 
       "what is oop":
-        "OOP is Object Oriented Programming. It is a programming paradigm that revolves around objects which contain data and methods.",
+        "OOP stands for Object Oriented Programming.",
 
       "what is a class":
-        "A class is a blueprint or template used to create objects.",
+        "A class is a blueprint for creating objects.",
 
       "what is an object":
-        "An object is an instance of a class that represents a real-world entity.",
+        "An object is an instance of a class.",
 
-      "what are the four pillars of oop":
-        "The four pillars of OOP are Encapsulation, Abstraction, Inheritance, and Polymorphism.",
-
-      "what is encapsulation":
-        "Encapsulation means binding data and methods together and protecting data from outside access.",
-
-      "what is abstraction":
-        "Abstraction means hiding internal implementation details and showing only important features.",
-
-      "what is inheritance":
-        "Inheritance allows one class to acquire properties and methods of another class.",
-
-      "what is polymorphism":
-        "Polymorphism means one method can perform different tasks based on the situation.",
-
-      "what is a constructor":
-        "A constructor is a special method that is automatically called when an object is created.",
-
-      "difference between class and object":
-        "A class is a blueprint, while an object is an instance of the class.",
-
-      "what is an operating system":
-        "An Operating System is system software that manages computer hardware and software resources.",
-
-      "what is cpu scheduling":
-        "CPU scheduling decides which process will get the CPU at a given time.",
-
-      "what is deadlock":
-        "Deadlock is a situation where processes wait indefinitely for resources.",
-
-      "what is virtual memory":
-        "Virtual memory allows programs to run even if physical memory is not enough.",
-
-      "what is paging":
-        "Paging divides memory into fixed-size blocks called pages.",
-
-      "what is a computer network":
-        "A computer network is a group of devices connected to share data and resources.",
-
-      "what is tcp":
-        "TCP is a connection-oriented protocol that provides reliable data transfer.",
-
-      "what is udp":
-        "UDP is a connectionless protocol that is faster but less reliable.",
-
-      "what is dns": "DNS converts domain names into IP addresses.",
+      "what is dns":
+        "DNS converts domain names into IP addresses.",
     };
 
     // ---------------- Response Logic ----------------
     const botText =
       botResponses[normalizedText] ||
-      "Sorry, I don't understand this question yet.";
+      "Sorry, I don't understand this yet.";
 
     // ---------------- Save Bot Message ----------------
     const bot = await Bot.create({
@@ -97,11 +79,11 @@ export const Message = async (req, res) => {
 
     // ---------------- Final Response ----------------
     return res.status(200).json({
-      UserMessage: user.text,
-      BotMessage: bot.text,
+      userMessage: user.text,
+      botMessage: bot.text,
     });
   } catch (error) {
     console.error("Chatbot Error:", error);
-    res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
