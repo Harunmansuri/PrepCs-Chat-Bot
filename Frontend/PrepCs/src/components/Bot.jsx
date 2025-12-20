@@ -12,6 +12,10 @@ function Bot() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
+  const cleanInput = (text) => {
+  return text.replace(/[^\w\s]/g, "").trim();
+};
+
   const handleSendMessage = async () => {
     if (!input.trim()) return;
 
@@ -32,7 +36,7 @@ function Bot() {
         { text: res.data.botMessage, sender: "bot" }
       ]);
     } catch (error) {
-      console.error("API Error:", error);
+     
       setMessages(prev => [
         ...prev,
         { text: "❌ Server error. Try again.", sender: "bot" }
