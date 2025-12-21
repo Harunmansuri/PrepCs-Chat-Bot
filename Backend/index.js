@@ -10,10 +10,13 @@ const app = express();
 
 // -------------------- Middleware --------------------
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: [
+    "https://prep-cs-chat-bot.vercel.app",
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST"]
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
