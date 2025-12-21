@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 
-// ✅ API URL from ENV
-const API_URL = import.meta.env.VITE_API_URL;
+
 
 function Bot() {
   const [messages, setMessages] = useState([]);
@@ -28,7 +27,7 @@ function Bot() {
 
     try {
       const res = await axios.post(
-        `${API_URL}/bot/v1/message`,
+        `${ import.meta.env.VITE_API_URL}/bot/v1/message`,
         { text: userText },
         {
           headers: {
